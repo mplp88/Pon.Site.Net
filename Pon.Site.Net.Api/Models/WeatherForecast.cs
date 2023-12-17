@@ -1,4 +1,4 @@
-namespace Pon.Site.Net.Api
+namespace Pon.Site.Net.Api.Models
 {
     public class WeatherForecast
     {
