@@ -1,3 +1,4 @@
+using Pon.Site.Net.Web.Configuration;
 using Pon.Site.Net.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<WeatherForecastService>();
+
+builder.Services.AddServices();
+
+builder.Services.Configure<ApiOptions>(builder.Configuration.GetSection("ExternalServices:PonSiteApi"));
 
 var app = builder.Build();
 
@@ -28,7 +32,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-
 
 app.Run();
